@@ -481,54 +481,80 @@ int prefixEvaluation(string s)
     }
     return st.top();
 }
+//Postfix Evaluation
+int evalRPN(vector<string> &tokens)
+{
+        stack<int> st;
+        for (int i = 0; i < tokens.size(); i++)
+        {
+            if (tokens[i] == "+")
+            {
+                int operand2 = st.top();
+                st.pop();
+                int operand1 = st.top();
+                st.pop();
+                st.push(operand1 + operand2);
+            }
+            else if (tokens[i] == "-")
+            {
+                int operand2 = st.top();
+                st.pop();
+                int operand1 = st.top();
+                st.pop();
+                st.push(operand1 - operand2);
+            }
+            else if (tokens[i] == "*")
+            {
+                int operand2 = st.top();
+                st.pop();
+                int operand1 = st.top();
+                st.pop();
+                st.push(operand1 * operand2);
+            }
+            else if (tokens[i] == "/")
+            {
+                int operand2 = st.top();
+                st.pop();
+                int operand1 = st.top();
+                st.pop();
+                st.push(operand1 / operand2);
+            }
+            else
+            {
+                st.push(stoi(tokens[i]));
+            }
+        }
+        return st.top();
+        
+}
 int main(){
     cout<<prefixEvaluation("-+7*45+20")<<endl;
     return 0;
 }
 */
-// Balanced Parenthesis
 
+// Balanced Parenthesis
 // bool isValid(string s)
 // {
-//     int n=s.size();
 //     stack<char> st;
-//     bool ans=true;
-//     for(int i=0;i<n;i++)
-//     {
-//         if(s[i]=='{' or s[i]=='(' or s[i]=='[')
+        
+//         for(int i=0;i<s.size(); i++)
 //         {
-//             st.push(s[i]);
-//         }
-//         else if(s[i]==')'){
-//             if(st.top()=='('){
-//                 st.pop;
+//             if(s[i] == '(' || s[i] == '[' || s[i] == '{'){
+//                 st.push(s[i]);
 //             }
 //             else{
-//                 ans=false;
-//                 break;
+//                 if(!st.empty() && s[i] == ')' && st.top() == '(' )
+//                     st.pop();
+//                 else if(!st.empty() && s[i] == '}' && st.top() == '{' )
+//                     st.pop();
+//                 else if(!st.empty() && s[i] == ']' && st.top() == '[' )
+//                     st.pop();
+//                 else  return false;
 //             }
 //         }
-//         else if(s[i]==']'){
-//             if(st.top()=='['){
-//                 st.pop;
-//             }
-//             else{
-//                 ans=false;
-//                 break;
-//             }
-//         }
-//         else if(s[i]=='}'){
-//             if(st.top()=='{'){
-//                 st.pop;
-//             }
-//             else{
-//                 ans=false;
-//                 break;
-//             }
-//         }
-//     }
-//     if (!st.empty()){
-//         return false;
-//     }
-//     return ans;
+        
+//         if(!st.empty()) return false;
+//         return true;
+        
 // }
